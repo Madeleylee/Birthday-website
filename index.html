@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Hace que la web se adapte a móvil -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para ti ❤️</title>
+
+    <!-- Fuente principal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Nuestro CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         PANTALLA INICIAL
+    ====================================================== -->
+
+    <section id="birthday-start" class="start-screen">
+
+        <!-- Pequeñas partículas de fondo -->
+        <div class="background-particles"></div>
+
+        <div class="start-content">
+
+            <p class="eyebrow">
+                Una pequeña sorpresa para ti
+            </p>
+
+            <h1>
+                Antes de entrar...
+            </h1>
+
+            <p class="instruction">
+                Toca el gorrito de cumpleaños para empezar la celebración
+            </p>
+
+
+            <!-- Gorrito interactivo -->
+
+            <button id="birthday-hat" class="birthday-hat" aria-label="Toca el gorrito">
+                🎉
+            </button>
+
+
+            <!-- Barra de progreso -->
+
+            <div class="progress-container">
+
+                <div class="progress-bar">
+
+                    <div id="progress-fill" class="progress-fill"></div>
+
+                </div>
+
+                <span id="progress-text">
+                    0%
+                </span>
+
+            </div>
+
+
+            <p id="tap-message" class="tap-message">
+                Vamos a por el 100% 🎉
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
+
+    <main id="main-page" class="hidden">
+
+
+        <!-- =================================================
+             PORTADA
+        ================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    Para mi persona favorita
+                </p>
+
+                <h1>
+                    Feliz cumpleaños,
+                    <span>Amor de mi vida ❤️</span>
+                </h1>
+
+                <!--
+                    ✏️ Aquí puedes cambiar el texto.
+                -->
+
+                <p class="hero-message">
+
+                    Hoy celebro tu vida, pero también celebro
+                    la suerte que tengo de poder compartirla contigo.
+
+                </p>
+
+
+                <button class="primary-button" onclick="unlockSection('memories')">
+                    Tengo algo más para ti
+                    <span>↓</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RECUERDOS
+        ================================================== -->
+
+        <section id="memories" class="section hidden-section memories-section">
+
+            <div class="section-heading">
+
+                <p class="eyebrow">
+                    Un pequeño álbum
+                </p>
+
+                <h2>
+                    Nuestros recuerdos 📸
+                </h2>
+
+                <p>
+                    Toca las fotos para descubrirlas.
+                </p>
+
+            </div>
+
+
+            <!--
+                EXACTAMENTE 6 FOTOS
+            -->
+
+            <div class="memory-grid">
+
+
+                <!-- FOTO 1 -->
+
+                <button class="memory-card" onclick="openMemory(0)">
+
+                    <img src="img/portada.jpg" alt="Nuestro recuerdo 1">
+
+                    <span class="memory-number">
+                        01
+                    </span>
+
+                </button>
+
+
+                <!-- FOTO 2 -->
+
+                <button class="memory-card" onclick="openMemory(1)">
+
+                    <img src="img/portada.jpg" alt="Nuestro recuerdo 2">
+
+                    <span class="memory-number">
+                        02
+                    </span>
+
+                </button>
+
+
+                <!-- FOTO 3 -->
+
+                <button class="memory-card" onclick="openMemory(2)">
+
+                    <img src="img/portada.jpg" alt="Nuestro recuerdo 3">
+
+                    <span class="memory-number">
+                        03
+                    </span>
+
+                </button>
+
+
+                <!-- FOTO 4 -->
+
+                <button class="memory-card" onclick="openMemory(3)">
+
+                    <img src="img/portada.jpg" alt="Nuestro recuerdo 4">
+
+                    <span class="memory-number">
+                        04
+                    </span>
+
+                </button>
+
+
+                <!-- FOTO 5 -->
+
+                <button class="memory-card" onclick="openMemory(4)">
+
+                    <img src="img/portada.jpg"  alt="Nuestro recuerdo 5">
+
+                    <span class="memory-number">
+                        05
+                    </span>
+
+                </button>
+
+
+                <!-- FOTO 6 -->
+
+                <button class="memory-card" onclick="openMemory(5)">
+
+                    <img src="img/portada.jpg" alt="Nuestro recuerdo 6">
+
+                    <span class="memory-number">
+                        06
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- Contador de fotos -->
+
+            <p id="memory-progress" class="memory-progress">
+                0 / 6 recuerdos descubiertos
+            </p>
+
+
+            <!-- Botón siguiente -->
+
+            <button id="memories-next" class="primary-button hidden" onclick="unlockSection('missions')">
+                Hay algo más... 🔍
+            </button>
+
+        </section>
+
+
+
+        <!-- =================================================
+             MODAL DE FOTO
+        ================================================== -->
+
+        <div id="memory-modal" class="modal hidden">
+
+            <div class="modal-background" onclick="closeMemory()"></div>
+
+
+            <div class="memory-modal-content">
+
+                <button class="close-button" onclick="closeMemory()">
+                    ×
+                </button>
+
+
+                <img id="modal-image" src="" alt="Recuerdo">
+
+
+                <p id="modal-caption" class="modal-caption"></p>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             MODAL DE PISTAS
+        ================================================== -->
+
+        <div id="mission-clue-modal" class="modal hidden">
+        
+            <div class="modal-background" onclick="closeMissionClue()"></div>
+
+            <div class="memory-modal-content">
+        
+                <button class="close-button" onclick="closeMissionClue()">
+                    ×
+                </button>
+        
+                <span id="clue-number" class="mission-number">
+                    PISTA · MISIÓN 01
+                </span>
+        
+                <h3 id="clue-title">
+                    Primera pista 👀
+                </h3>
+        
+                <p id="clue-text">
+                    Aquí aparecerá la pista.
+                </p>
+        
+            </div>
+        
+        </div>
+
+        <!-- =================================================
+             MISIONES
+        ================================================== -->
+
+        <section id="missions" class="section hidden-section missions-section">
+
+            <div id="missions-intro" class="mission-intro">
+                <div class="section-heading">
+                                
+                    <p class="eyebrow">
+                        Ahora empieza el juego
+                     </p>
+                                
+                    <h2>
+                      Tengo dos pequeñas misiones para ti
+                    </h2>
+                                
+                     <p>
+                      Y esta vez tendrás que dejar de la pantalla y salir a la vida real
+                     </p>
+                                
+                 </div>
+
+                <div class="envelope-big">
+                    ⏳
+                </div>
+
+                <p>
+                    Hay <strong>dos vales</strong> escondidos
+                    en dos cartas físicas.
+                </p>
+
+                <p>
+                    La web solamente te dará las pistas.
+                    El resto depende de ti. 👀
+                </p>
+
+                <button class="primary-button" onclick="startMissions()">
+                    Comenzar las misiones
+                </button>
+
+            </div>
+
+
+            <!-- =============================================
+                 MISIÓN 1
+            ============================================== -->
+
+            <div id="mission-one" class="mission hidden">
+
+                <span class="mission-number">
+                    MISIÓN <span class="number-mision">01</span>
+                </span>
+
+                <div class="mission-icon" onclick="openMissionClue(1)">
+                    💌
+                </div>
+
+                <h3>
+                    Encuentra la sorpresa escondida
+                </h3>
+
+                <p>
+                    Hay algo que te espera, pero primero tendrás que encontrarlo.
+                </p>
+
+                <p class="mission-highlight">
+                    Toca el sobre para descubrir la pista 👀
+                </p>
+                <button class="secondary-button" onclick="backToMissionsIntro()">
+                    ← Volver
+                </button>
+                <button class="primary-button" onclick="foundMission(1)">
+                    Ya la encontré →
+                </button>
+
+            </div>
+
+
+            <!-- =============================================
+                 MISIÓN 2
+            ============================================== -->
+
+            <div id="mission-two" class="mission hidden">
+
+                <span class="mission-number">
+                    MISIÓN <span class="number-mision"> 02</span>
+                </span>
+
+                <div class="mission-icon" onclick="openMissionClue(2)">
+                    💌
+                </div>
+
+                <h3>
+                    Hay otra...
+                </h3>
+
+                <p>
+                    Porque parece que una carta no era suficiente.
+                </p>
+
+                <p class="mission-highlight">
+                    Busca la segunda. 👀
+                </p>
+
+                <button class="secondary-button" onclick="goToPreviousMission(2)">
+                    ← Misión anterior
+                </button>
+                <button class="primary-button" onclick="foundMission(2)">
+                    Ya la encontré →
+                </button>
+
+            </div>
+
+
+            <!-- =============================================
+                 MISIÓN COMPLETADA
+            ============================================== -->
+
+            <div id="missions-complete" class="mission hidden">
+
+            
+                <div class="mission-icon">
+                    🎁
+                </div>
+
+                <h3>
+                    ¡Has encontrado los dos!
+                </h3>
+
+                <p>
+                    Guarda bien esos vales.
+                </p>
+
+                <p class="mission-highlight">
+                    Todavía no necesitas saber qué significan. 😉
+                </p>
+
+                <button class="primary-button" onclick="unlockSection('final')">
+                    Una última cosa... ❤️
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FINAL
+        ================================================== -->
+
+        <section id="final" class="final-section hidden-section">
+
+            <div class="final-content">
+
+                <p class="eyebrow">
+                    Y ahora sí...
+                </p>
+
+                <h2>
+                    Feliz cumpleaños,
+                    <span> Amor de mi vida ❤️</span>
+                </h2>
+
+
+                <!-- ✏️ Este mensaje lo personalizaremos -->
+
+                <p class="final-message">
+
+                    Espero que este nuevo año de tu vida esté
+                    lleno de momentos bonitos, aventuras,
+                    risas y muchísimas cosas que podamos vivir juntos.
+
+                    <br><br>
+
+                    Gracias por hacerme tan feliz y por ser
+                    la maravillosa persona que eres.
+
+                    <br><br>
+
+                    Te quiero muchísimo.
+
+                </p>
+
+
+                <div class="final-photo">
+
+                    <img src="img/portada.jpg" alt="Nosotros">
+
+                </div>
+
+
+                <p class="final-signature">
+                    Siempre contigo. ❤️
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         CONFETI
+    ====================================================== -->
+
+    <div id="confetti-container" class="confetti-container"></div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
