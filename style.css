@@ -877,10 +877,7 @@ button {
 
     padding: 100px 25px;
 
-    background:
-        radial-gradient(circle at center,
-            #26141b,
-            #08080a 70%);
+    background: var(--background);
 
 }
 
