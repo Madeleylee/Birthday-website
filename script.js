@@ -198,69 +198,87 @@ birthdayHat.addEventListener("click", () => {
 ========================================================= */
 
 
+// function completeBirthdayStart() {
+
+
+//     // Evitamos más clics
+
+//     birthdayHat.disabled = true;
+
+
+//     // Animación final
+
+//     birthdayHat.classList.add(
+//         "hat-complete"
+//     );
+
+
+//     tapMessage.textContent =
+//         "¡Listo! 🎉";
+
+
+//     // Lanzamos confeti
+
+//     createConfetti();
+
+
+//     /*
+//         Esperamos un poco para que
+//         el confeti pueda verse antes
+//         de mostrar la página.
+//     */
+
+//     setTimeout(() => {
+
+
+//         // Ocultamos pantalla inicial
+
+//         startScreen.classList.add(
+//             "hidden"
+//         );
+
+
+//         // Mostramos la página
+
+//         mainPage.classList.remove(
+//             "hidden"
+//         );
+
+
+//         // Permitimos hacer scroll
+
+//         document.body.classList.remove(
+//             "locked"
+//         );
+
+
+//         // Comenzamos arriba
+
+//         window.scrollTo(0, 0);
+
+
+//     }, 1600);
+
+// }
+
 function completeBirthdayStart() {
-
-
-    // Evitamos más clics
 
     birthdayHat.disabled = true;
 
+    // Mostrar la página principal
+    startScreen.classList.add("hidden");
+    mainPage.classList.remove("hidden");
 
-    // Animación final
+    document.body.classList.add("ready");
 
-    birthdayHat.classList.add(
-        "hat-complete"
-    );
+    // Ir a la primera sección
+    goToSection("main-page");
 
-
-    tapMessage.textContent =
-        "¡Listo! 🎉";
-
-
-    // Lanzamos confeti
-
-    createConfetti();
-
-
-    /*
-        Esperamos un poco para que
-        el confeti pueda verse antes
-        de mostrar la página.
-    */
-
+    // 🎉 Lanzar confeti al entrar
     setTimeout(() => {
-
-
-        // Ocultamos pantalla inicial
-
-        startScreen.classList.add(
-            "hidden"
-        );
-
-
-        // Mostramos la página
-
-        mainPage.classList.remove(
-            "hidden"
-        );
-
-
-        // Permitimos hacer scroll
-
-        document.body.classList.remove(
-            "locked"
-        );
-
-
-        // Comenzamos arriba
-
-        window.scrollTo(0, 0);
-
-
-    }, 1600);
-
+        createConfetti();
+    }, 100);
 }
-
 
 
 /* =========================================================
@@ -350,99 +368,45 @@ function createSmallHeart() {
 ========================================================= */
 
 
+
 function createConfetti() {
+    
+    const confettiContainer = document.querySelector(".confetti-container");
 
+    if (!confettiContainer) return;
 
-    /*
-        Símbolos que utilizaremos
-        para la celebración.
-    */
+    // Limpiar confeti anterior
+    confettiContainer.innerHTML = "";
 
-    const symbols = [
-        "❤️",
-        "🤍",
-        "✨",
-        "🎉",
-        "🎂"
-    ];
+    const pieces = 80;
 
+    for (let i = 0; i < pieces; i++) {
 
-    /*
-        Creamos 70 elementos.
-    */
+        const piece = document.createElement("div");
 
-    for (let i = 0; i < 70; i++) {
+        piece.classList.add("confetti");
 
-
-        const piece =
-            document.createElement("span");
-
-
-        piece.classList.add(
-            "confetti"
-        );
-
-
-        // Elegimos un símbolo aleatorio
+        // Diferentes elementos para que se vea más bonito
+        const symbols = ["🔴", "🟡", "🟠", "🟢", "🔵", "🟣"];
 
         piece.textContent =
-            symbols[
-            Math.floor(
-                Math.random() *
-                symbols.length
-            )
-            ];
+            symbols[Math.floor(Math.random() * symbols.length)];
 
-
-        // Posición horizontal aleatoria
-
-        piece.style.left =
-            `${Math.random() * 100}% `;
-
-
-        // Tamaño aleatorio
-
-        piece.style.fontSize =
-            `${12 + Math.random() * 18} px`;
-
-
-        // Duración aleatoria
-
-        const duration =
-            2.5 + Math.random() * 2;
-
-
+        piece.style.left = Math.random() * 100 + "%";
         piece.style.animationDuration =
-            `${duration} s`;
-
-
-        // Retraso aleatorio
+            (2.5 + Math.random() * 2) + "s";
 
         piece.style.animationDelay =
-            `${Math.random() * 0.5} s`;
+            Math.random() * 0.5 + "s";
 
-
-        confettiContainer.appendChild(
-            piece
-        );
-
-
-        /*
-            Eliminamos el elemento
-            después de su animación.
-        */
-
-        setTimeout(() => {
-
-            piece.remove();
-
-        }, (duration + 1) * 1000);
-
+        confettiContainer.appendChild(piece);
     }
 
+    // Limpiar después de la animación
+    setTimeout(() => {
+        confettiContainer.innerHTML = "";
+    }, 5000);
 }
-
-
 
 /* =========================================================
    NAVEGACIÓN
