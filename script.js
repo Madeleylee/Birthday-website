@@ -600,22 +600,28 @@ function openMissionClue(missionNumber) {
     const clueNumber = document.getElementById("clue-number");
     const clueTitle = document.getElementById("clue-title");
     const clueText = document.getElementById("clue-text");
-
+    const clueText2 = document.getElementById("clue-text2");
     if (missionNumber === 1) {
 
         clueNumber.textContent = "PISTA · MISIÓN 01";
-        clueTitle.textContent = "Primera pista 💌";
+        clueTitle.textContent = "💌";
 
         clueText.textContent =
-            "No tendrás que ir muy lejos para encontrarlo. De hecho, ya tienes todo lo necesario delante de ti. Entre todo lo que he preparado para ti, hay algo que no está ahí simplemente para decorar. Busca bien… y deja que tu curiosidad haga el resto. ❤️";
+            "No tendrás que ir muy lejos para encontrarlo. De hecho, ya tienes todo lo necesario delante de ti🔍";
 
+        clueText2.textContent = 
+            "Entre todo lo que he preparado para ti, hay algo que no está ahí simplemente para decorar. Busca bien… y deja que tu curiosidad haga el resto. ❤️";
+            
     } else if (missionNumber === 2) {
 
         clueNumber.textContent = "PISTA · MISIÓN 02";
-        clueTitle.textContent = "Segunda pista 💌";
+        clueTitle.textContent = "💌";
 
         clueText.textContent =
-            "Para esta tendrás que descubrir algo que todavía no sabes que tienes. 👀 Hay un regalo esperándote en un lugar que quizá aún no hayas mirado. Ábrelo, descubre lo que hay dentro y fíjate bien… porque tu segundo tesoro está más cerca de lo que imaginas. ❤️";
+            "Para esta tendrás que descubrir algo que todavía no sabes que tienes👣";
+        
+        clueText2.textContent = 
+            "👀 Hay un regalo esperándote en un lugar que quizá aún no hayas mirado. Ábrelo, descubre lo que hay dentro y fíjate bien… porque tu segundo tesoro está más cerca de lo que imaginas. ❤️";
     }
 
     modal.classList.remove("hidden");
